@@ -1,0 +1,7 @@
+---
+displayName: zap yaegi issue
+type: middleware
+import: yaegi_zap_issue_demo
+summary: 'To illustrate issues yaegi encounters when using zap'
+testData:
+  url: 'localhost:5000'

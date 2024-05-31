@@ -1,0 +1,46 @@
+---
+api:
+  dashboard: true
+  insecure: true
+
+accesslog: {}
+
+entrypoints:
+  traefik:
+    address: ":9000/tcp"
+  web:
+    address: ":8888/tcp"
+experimental:
+  localPlugins:
+    issue_demo:
+      moduleName: "yaegi_zap_issue_demo"
+
+global:
+  sendAnonymousUsage: true
+  checkNewVersion: false
+
+http:
+  middlewares:
+    issue_demo:
+      plugin:
+        issue_demo:
+          LogLevel: "DEBUG"
+  routers:
+    whoami-middleware:
+      rule: "PathPrefix(`/demo`)"
+      service: "whoami"
+      middlewares:
+        - "issue_demo"
+  services:
+    whoami:
+      loadBalancer:
+        servers:
+          - url: "http://127.0.0.1:80"
+
+log:
+  level: "DEBUG"
+  format: json
+
+providers:
+  file:
+    filename: "/etc/traefik.yaml"
