@@ -1,0 +1,2 @@
+Code in the vendor directory is subject to the original licenses (LICENSE.txt files are kept in place for each of the packages)
+The "glue" code to configure the plugin is presented under MIT-0 (https://github.com/aws/mit-0)
